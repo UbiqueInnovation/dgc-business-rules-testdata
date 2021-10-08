@@ -17,12 +17,13 @@ const dissectId = (id) => {
     })
 }
 
-mkDir("EU")
+const euDir = join("per-country", "EU")
+mkDir(euDir)
 
 for (const ruleID of euRuleIds) {
     const { t, n } = dissectId(ruleID)
     const rule = readJson(join(euPath, ruleID, "rule.json"))
     rule["expr-as-text"] = renderAsText(rule.Logic)
-    writeJson(join("EU", `${t}-${n}.json`), rule)
+    writeJson(join(euDir, `${t}-${n}.json`), rule)
 }
 

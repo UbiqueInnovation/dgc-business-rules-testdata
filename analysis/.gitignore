@@ -1,11 +1,4 @@
-DE/
-ES/
-EU/
-FR/
-IE/
-LT/
-LU/
-NL/
-RO/
-SI/
-UA/
+/per-country/
+/node_modules
+/package-lock.json
+/tmp
