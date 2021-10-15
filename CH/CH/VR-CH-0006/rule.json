@@ -1,27 +1,41 @@
 {
   "AffectedFields": [
-    "t.0.tt",
-    "t.0.sc"
+    "v.0",
+    "v.0.dt",
+    "v.0.mp"
   ],
-  "CertificateType": "Test",
+  "CertificateType": "Vaccination",
   "Country": "CH",
   "Description": [
     {
-      "desc": "If the test type is \"PCR\" then the validation date must be before the date of sample collection plus 72 hours",
+      "desc": "Today must be less than the vaccination date plus 364 days for 2-dose vaccines",
       "lang": "en"
     }
   ],
   "Engine": "CERTLOGIC",
   "EngineVersion": "0.7.5",
-  "Identifier": "TR-CH-0007",
+  "Identifier": "VR-CH-0006",
   "Logic": {
     "if": [
       {
-        "===": [
+        "and": [
           {
-            "var": "payload.t.0.tt"
+            "var": "payload.v.0"
           },
-          "LP6464-4"
+          {
+            "!": [
+              {
+                "in": [
+                  {
+                    "var": "payload.v.0.mp"
+                  },
+                  [
+                    "EU/1/20/1525"
+                  ]
+                ]
+              }
+            ]
+          }
         ]
       },
       {
@@ -38,10 +52,10 @@
           {
             "plusTime": [
               {
-                "var": "payload.t.0.sc"
+                "var": "payload.v.0.dt"
               },
-              72,
-              "hour"
+              365,
+              "day"
             ]
           }
         ]
